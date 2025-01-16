@@ -7,11 +7,7 @@
 #   dir3
 #       dir4
 
-mkdir task
-cd ./task
-mkdir dir1 dir2 dir3
-cd ./dir3
-mkdir dir4
+mkdir -p task/dir1 task/dir2 task/dir3/dir4
 
 # изменяем текущую директорию на task
 
@@ -19,8 +15,7 @@ cd ../
 
 # создаём пустой файл task/dir2/empty
 
-cd ./dir2
-touch empty
+touch ./dir2/empty
 
 # создаём файл task/dir2/hello.sh с таким содержанием:
 # #!/bin/bash
@@ -44,7 +39,7 @@ cp -r -T ./dir2 ./dir3/dir4
 # записываем в task/dir1/summary.txt список файлов с расширением *.txt
 # находящихся в task, включая поддиректории
 
-find ../task -name "*.txt" > ./dir1/summary.txt
+find ../task -name "*.txt" > ./dir1/summary.txt 
 
 # дописываем в task/dir1/summary.txt содержимое task/dir2/list.txt
 
@@ -58,7 +53,7 @@ export MYVAL="Всем студентам"
 # запускаем task/dir2/hello.sh с переменной окружения NAME в качестве аргумента
 # вывод скрипта должен дописаться в файл task/dir1/summary.txt
 
-bash ./dir2/hello.sh "MYVAL" >> ./dir1/summary.txt
+bash ./dir2/hello.sh "$MYVAL" >> ./dir1/summary.txt
 
 # перемещаем с переименованием task/dir1/summary.txt в task/Практическое задание
 
